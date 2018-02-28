@@ -33,7 +33,7 @@ if you exceed the given time of the game you will receive alert with game over.
  
 Mine Sweeper
 =====================
-
-
+start play then 
+Left click digs, right click flags possible mines.
 
 =========================== Enjoy :) ! ====================================== 
