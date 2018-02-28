@@ -2,7 +2,7 @@
 Java script Games
 First select one game from the following:
 
-Connect Four !
+Connect Four 
 =====================
 
 - Entering The players name
@@ -13,7 +13,7 @@ Connect Four !
 		connect balls according to level horizontally or 			vertically or diagonally 
     
     
-Naughty Fish Game !
+Naughty Fish Game 
 =====================
 - press Start Game button to begin the game. 
 - move the mouse to move the little fish. 
@@ -21,7 +21,7 @@ Naughty Fish Game !
 - step away from the shark cause it increases its speed every 20 points.
 (Made By : Mina Yousry Samir)
 
-puzzle game !
+puzzle game 
 =====================
 
 it is puzzle game which is supported by different browsers like Mozilla firefox, google chrome,Internet explorer and Microsoft edge. 
@@ -31,7 +31,7 @@ to insert images on the right place just click on image you want and click on th
 after you finish inserting images just click on finish game button to see if you insert images correct or not and
 if you exceed the given time of the game you will receive alert with game over.
  
-Mine Sweeper!
+Mine Sweeper
 =====================
 
 
