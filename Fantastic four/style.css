@@ -1,0 +1,189 @@
+/************** GLOBAL ***************/
+
+* {
+  margin: 0;
+}
+
+/************** HEADER STYLE ***************/
+
+header {
+  background: rgb(3, 1, 13);
+  padding: 18px;
+  font-family: monospace;
+}
+
+header .menu {
+  width: 50%;
+  color: #fff;
+  list-style-type: none;
+  margin-left: 40px;
+}
+
+.menu li {
+  padding-right: 20px;
+  display: inline-block;
+}
+
+/************** START STYLE ***************/
+
+.bckImg {
+  background-image: url('images/hannah-rodrigo-320734-unsplash.jpg');
+  height: 95vh;
+  background-size: cover;
+  position: relative;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+.bckImg:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-image: linear-gradient(to bottom left, #121619, #ff1a02);
+  opacity: .5;
+  background-blend-mode: lighten;
+}
+
+article.imgArticle {
+  font-family: Arial, Helvetica, sans-serif;
+  color: #fff;
+  width: 50%;
+  text-align: center;
+  position: relative;
+}
+
+article.imgArticle h1 {
+  padding-bottom: 10px;
+  font-size: 30px;
+}
+
+figure img {
+  width: 300px;
+  height: 300px;
+  border-radius: 10%;
+}
+
+/************** FIND STYLE ***************/
+
+.find {
+  background-image: url('images/michal-parzuchowski-224092-unsplash.jpg');
+  background-size: cover;
+  position: relative;
+}
+
+.find:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-image: linear-gradient(to bottom left, #ecf3f7, #e6d1d1);
+  opacity: .5;
+}
+
+.imgArticle2 {
+  font-family: Arial, Helvetica, sans-serif;
+  color: rgb(250, 9, 9);
+  width: 100%;
+  height: 40vh;
+  text-align: center;
+  position: relative;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+.imgArticle2 h3 {
+  margin-bottom: 10px;
+}
+
+.blocks {
+  position: relative;
+  content: "";
+  display: flex;
+  width: 70vw;
+  margin: 0 auto;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.column {
+  color: rgb(96, 93, 94);
+  text-align: center;
+  padding: 30px;
+  margin-right: 20px;
+  background-color: rgb(255, 255, 255);
+  margin: 0 auto;
+  margin-bottom: 40px;
+  border-radius: 10%;
+  box-shadow: 10px 10px 10px 10px #888888;
+}
+
+figcaption {
+  font-size: 20px;
+  color: rgb(61, 62, 60);
+  margin-bottom: 10px;
+}
+
+.blocks button {
+  background-color: rgb(237, 17, 17);
+  padding: 10px;
+  border-radius: 10%;
+  border-style: none;
+  color: rgb(175, 193, 203);
+  box-shadow: 5px 5px 3px  #888888;
+}
+
+/************** Red Image STYLE ***************/
+
+.bckImg.redImg {
+  background-image: url('images/greyson-joralemon-299735-unsplash.jpg');
+  background-color: red;
+  background-blend-mode: hard-light;
+  height: 50vh;
+  color: rgb(213, 209, 195);
+}
+
+.redImg::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-image: linear-gradient( rgb(242, 17, 24), #f60707);
+  opacity: .5;
+}
+
+.bckImg.redImg article {
+  width: 50%;
+  margin-bottom: 20px;
+}
+
+.bckImg.redImg h2 {
+  margin-bottom: 10px;
+}
+
+footer {
+  background-color: rgb(50, 49, 49);
+}
+
+.container {
+  justify-content: center;
+  align-items: center;
+  color: rgb(215, 204, 205);
+  /* width: 85%; */
+  margin: 0 auto;
+  text-align: center;
+  /* margin-bottom: 20px; */
+}
+
+.contact p {
+  display: inline-block;
+  margin-left: 10px;

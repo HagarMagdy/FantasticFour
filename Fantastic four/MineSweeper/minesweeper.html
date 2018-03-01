@@ -1,0 +1,477 @@
+<html>
+
+<head>
+
+<style>
+
+#mainDiv{
+width : 500px;
+height : 550px;
+border : solid 5px rgb(149,66,149); 
+background-color : rgb(217,170,217);
+border-radius : 5px;
+
+}
+
+#boardDiv {
+				width : 500px;
+				height : 500px;
+				
+			}
+button {
+				background: linear-gradient( white, rgb(217,170,217) );
+				float : left;
+				font-weight : bold;
+				padding:0px;
+			}
+			
+			
+			#startButton {
+				width : 100px;
+				margin-top : 4%;
+				margin-left : 4%;
+				font-size : 120%;
+				color : white;
+				font-weight: bold;
+				
+				border: 0px;
+				border-radius: 10px;
+				
+				background: linear-gradient( rgb(149,66,149), rgb( 72, 109, 159 ) );
+			}
+			
+			#infoDiv
+			{
+			float : right;
+			margin : 2%;
+			color : white;
+			font-size :150%;
+			}
+             
+            .flagcol
+            {
+        
+            float: left;
+            height: 80%;
+        
+            }
+			
+    
+            .flagrow {
+				width: 100%;
+				height: 50%;
+			}
+			#flagleft {
+				width : 70%;
+			}
+			#flagstick {
+				width : 1px;
+				background-color : black;
+			}
+			#flagtriangle {
+				width : 0px;
+				height : 0px;
+				
+				border-right: 9px solid red;
+				border-top: 6px solid transparent;
+			}
+				.btnBack {
+  background: #3498db;
+  background-image: -webkit-linear-gradient(top, #3498db, #2980b9);
+  background-image: -moz-linear-gradient(top, #3498db, #2980b9);
+  background-image: -ms-linear-gradient(top, #3498db, #2980b9);
+  background-image: -o-linear-gradient(top, #3498db, #2980b9);
+  background-image: linear-gradient(to bottom, #3498db, #2980b9);
+  -webkit-border-radius: 28;
+  -moz-border-radius: 28;
+  border-radius: 28px;
+  font-family: Arial;
+  position: absolute;
+    left: 10px;
+     top:10px;
+  color: #ffffff;
+  font-size: 20px;
+  padding: 10px 20px 10px 20px;
+  text-decoration: none;
+}
+
+.btnBack:hover {
+  background: #3cb0fd;
+  background-image: -webkit-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: -moz-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: -ms-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: -o-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: linear-gradient(to bottom, #3cb0fd, #3498db);
+  text-decoration: none;
+}
+</style>
+</head>
+
+<body  style="margin-left : auto ; margin-right : auto ; width : 34%; margin-top : 5%;">
+<div id='mainDiv' align='center'>
+			<div id='boardDiv'>
+			
+			</div>
+			<div>
+				<button id='startButton' onclick="loadBoard()">Start</button>
+								 <button onclick=" window.open('../index.html', '_self', '');"  value=Back" 
+                Style="background: #3498db;
+                background-image: -webkit-linear-gradient(top, #3498db, #2980b9);
+                background-image: -moz-linear-gradient(top, #3498db, #2980b9);
+                background-image: -ms-linear-gradient(top, #3498db, #2980b9);
+                background-image: -o-linear-gradient(top, #3498db, #2980b9);
+                background-image: linear-gradient(to bottom, #3498db, #2980b9);
+                -webkit-border-radius: 28;
+                -moz-border-radius: 28;
+                border-radius: 28px;
+                font-family: Arial;
+                position: absolute;
+                left: 10px;
+                top:10px;
+                color: #ffffff;
+                font-size: 20px;
+                padding: 10px 20px 10px 20px;
+                text-decoration: none;">Back</button>
+
+				<div id='infoDiv'>display info to the user...</div>
+			</div>
+		</div>
+		<button style='width:12.666px; height:12.666px; border:2px'>
+			<div class='flagcol' id='flagleft'>
+				<div class='flagrow' id='flagtriangle'> </div>
+				<div class='flagrow'> </div>
+			</div>
+			<div class='flagcol' id='flagstick'>
+			
+			</div>
+		</button>
+		
+		<button class="btnBack" id="btnBack" onclick="window.open('../index.html', '_self', '');" >Back</button>
+
+</body>
+
+</html>
+
+
+<script>
+
+var board = document.getElementById('boardDiv');
+var boardSize= 30;
+var numberOfBombs=50; 
+var display=document.getElementById('infoDiv');
+var matrix = null;
+
+var bombsCoordinates= [];
+var startButton = document.getElementById('startButton');
+var isplaying = false;
+var numberOfFlagsWithBombs = 0;
+    
+    
+var loadBoard = function(){
+isplaying = true;
+board.innerHTML='';
+var sizePercent = 100/boardSize;
+display.innerText=numberOfBombs;
+var allCoordinates =[];
+    display.style.color = 'white';
+numberOfFlagsWithBombs = 0;
+matrix = new Array(boardSize);
+for(var y=0;y<boardSize;y++)
+{
+      var rowDiv= document.createElement('div');
+      matrix[y]=new Array(boardSize);
+     for(var x=0;x<boardSize;x++)
+	  {
+	         var button=document.createElement('button');
+	         button.style.width=sizePercent+'%';
+	         button.style.height=sizePercent+'%';
+	         rowDiv.appendChild(button);
+	  
+	          matrix[y][x]=button;
+              button.x=x;
+              button.y=y;		
+              allCoordinates.push(button); 	
+              button.onclick = (e) => {leftClickAction(e);}
+			  button.oncontextmenu = (e) => {rightClickAction(e);}
+              
+
+			  
+	  }
+
+      board.appendChild(rowDiv);
+
+}
+generateBombs(allCoordinates);
+
+}
+
+var generateBombs = function (allCoordinates)
+{
+  bombsCoordinates=[];
+var count =0;
+
+//generate random number say 30 , access the index of each button , set the bomb property true and remove this button from the allCoordinates array
+while (count ++ < numberOfBombs)
+{
+var index  =Math.floor(Math.random()*allCoordinates.length);
+//this coordinate is button
+var coordinate = allCoordinates[index];
+matrix[coordinate.y][coordinate.x].bomb = true;
+allCoordinates.splice(index,1);
+//console.log(coordinate.y + ":" +coordinate.x);
+//push the index of the button 
+bombsCoordinates.push(coordinate);
+}
+
+}
+
+var showBombs = function(){
+
+  for (var index in bombsCoordinates)
+    {
+var x  = bombsCoordinates[index].x;
+var y  = bombsCoordinates[index].y;
+
+matrix[y][x].style.background='yellow';
+matrix[y][x].style.fontSize='large';
+matrix[y][x].style.color='red';
+matrix[y][x].innerText='*';
+
+
+
+
+}
+}
+
+var rightClickAction = function(event){
+    event.preventDefault(); // don't shoe context menu 
+if (!isplaying) return;    
+
+var target = event.target;
+    if(target.nodeName == 'BUTTON' && target.markedAsFlag==null){
+      showFlag(target);  
+        
+    }
+    else {
+        
+        hideFlag(target);
+    }
+
+}
+var leftClickAction = function(event){
+    if (!isplaying) return;    
+     var button = getParent( event.target, 'BUTTON' );
+		
+		if ( button.markedAsFlag ) {
+			
+			var isHumanClick = event.isTrusted;
+			
+			if ( isHumanClick ) {
+			
+				return;
+			}
+			else {
+			
+				if ( !button.bomb ) {
+				
+					hideFlag( button );
+				}
+				else {
+				
+					// will never happen because each bomb is surrounded by numbers
+					// just to remember: when it's a number it stops exploding
+					alert( 'will never alert!!!' );
+				}
+			}
+		}
+		
+		hitPosition( button );
+	}
+
+var showFlag = function (element){
+   if ( display.innerText != '0' ) {
+		
+			element.innerHTML = "<div class='flagcol' id='flagleft'><div class='flagrow' id='flagtriangle'> </div><div class='flagrow'> </div></div><div class='flagcol' id='flagstick'></div>";
+			element.markedAsFlag = true;
+			
+			display.innerText = parseInt( display.innerText ) - 1;	
+
+			if ( element.bomb ) 
+				numberOfFlagsWithBombs++;
+				
+			if ( numberOfFlagsWithBombs == numberOfBombs ) 
+				isWinner();
+		}
+}
+
+
+var hideFlag = function (element){
+    element = getParent( element, 'BUTTON' );
+     element.innerHTML ='';
+     element.markedAsFlag=false;
+     display.innerText = parseInt(display.innerText) + 1;
+	 if ( element.bomb ) 
+			numberOfFlagsWithBombs--;	
+}
+
+var getParent = function ( element, nodeName ) {
+	
+		while ( element.nodeName != nodeName ) 
+			element = element.parentNode;
+			
+		return element;
+	}
+	
+	var hitPosition = function ( button ) {
+	
+	button.onclick = null;
+        button.oncontextmenu = ( e ) => {  e.preventDefault(); }; // don't show context menu!
+		
+		if ( button.bomb ) {
+			
+			gameOver ( button );
+		}
+        else 
+            {
+                
+                
+                var neighborBombs = howManyNeighborBombs( button.x, button.y );
+                if ( neighborBombs != 0 ) {
+			
+				button.innerText = neighborBombs;
+				
+				var colors = 
+				[
+					'red', 'teal', 'brown', 'rebeccapurple', 'purple', 'darkgreen', 'green', 'navy'
+				];
+				
+				
+
+				button.style.color = colors[ neighborBombs -1 ];
+            }
+                
+                else {
+			
+				explodeInterative( button.x, button.y );
+			}
+                button.style.background = 'rgb(217,170,217)';
+            }
+        
+	}
+    
+    
+    var gameOver = function(button){
+       isplaying = false;
+        
+        showBombs();
+        button.style.background = 'red';
+		button.style.color = 'yellow';
+		
+		display.innerText = 'GAME OVER';
+		display.style.color = 'red';
+		display.style.fontWeight = 'bold';
+
+    }
+    
+
+    var howManyNeighborBombs = function ( x, y ) {      
+    
+        
+        var count = 0;
+		
+		var iy = y == 0 ? y : y - 1;
+		for ( ; iy <= y + 1 && iy < matrix.length; iy++ ) {
+
+			var ix = x == 0 ? x : x - 1;
+			for ( ; ix <= x + 1 && ix < matrix[ iy ].length; ix++ ) {
+			
+				if ( matrix[ iy ][ ix ].bomb ) 
+					count++;
+			}
+		}		
+		
+		return count;
+        
+    
+    }
+   var explode = function ( x, y ) {
+		
+		var iy = y == 0 ? y : y - 1;
+		for ( ; iy <= y + 1 && iy < matrix.length; iy++ ) {
+
+			var ix = x == 0 ? x : x - 1;
+			for ( ; ix <= x + 1 && ix < matrix[ iy ].length; ix++ ) {
+			
+				matrix[ iy ][ ix ].click();
+			}
+		}
+	}
+   
+   var explodeInterative = function ( x, y ) {
+	
+		var scheduledPositions = [];
+		
+		var pos = new Object();
+		pos.x = x;
+		pos.y = y;
+		
+		scheduledPositions = 
+			scheduledPositions.concat( gatherNeighborPositions( pos ) );
+			
+		while ( scheduledPositions.length > 0 ) {
+		
+			var currentPosition = scheduledPositions.pop();
+			var ignoreExplode = true;
+			
+			//hitPosition( currentPosition, ignoreExplode );
+			
+			// Fake the Event
+			var event = new Object();
+			event.target = currentPosition;
+			
+			leftClickAction( event, ignoreExplode );
+			
+			if ( currentPosition.neighborBombs == 0 ) {
+			
+				var newPositions = gatherNeighborPositions( currentPosition );
+				
+				scheduledPositions = 
+					scheduledPositions.concat( newPositions ); //push the second array to the first 
+			}
+		}
+	}
+   
+   	var gatherNeighborPositions = function( pos ) {
+	
+		var result = [];
+	
+		var y = pos.y;
+		var x = pos.x;
+		
+		var iy = y == 0 ? y : y - 1;
+		for ( ; iy <= y + 1 && iy < matrix.length; iy++ ) {
+
+			var ix = x == 0 ? x : x - 1;
+			for ( ; ix <= x + 1 && ix < matrix[ iy ].length; ix++ ) {
+			
+				if ( matrix[ iy ][ ix ].onclick == null ) continue; // ignore this element
+				
+				result.push( matrix[ iy ][ ix ] ); //save the position that has on click action  
+			}
+		}	
+
+		return result;
+	}
+	
+	var isWinner = function() {
+	
+		isPlaying = false;
+		
+		display.innerText = 'YOU WON \\o/';
+		display.style.fontWeight = 'bold';
+	}
+	
+	
+
+</script>
+

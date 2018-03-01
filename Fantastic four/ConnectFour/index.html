@@ -1,0 +1,81 @@
+﻿<!DOCTYPE html>
+<!--author Usama Ahmed--> 
+<html >
+    <head>
+        <meta charset="UTF-8">
+        <title>Connect Four</title>
+
+        <script src="JS/PlayerClass.js"></script>
+
+        <link rel="stylesheet" href="CSS/index.css">
+        <script src="JS/index.js"></script>
+
+    </head>
+
+    <body>
+        <div class="container">
+            <button onclick=" window.open('../index.html', '_self', '');"  value=Back" 
+                    Style="background: #3498db;
+                    background-image: -webkit-linear-gradient(top, #3498db, #2980b9);
+                    background-image: -moz-linear-gradient(top, #3498db, #2980b9);
+                    background-image: -ms-linear-gradient(top, #3498db, #2980b9);
+                    background-image: -o-linear-gradient(top, #3498db, #2980b9);
+                    background-image: linear-gradient(to bottom, #3498db, #2980b9);
+                    -webkit-border-radius: 28;
+                    -moz-border-radius: 28;
+                    border-radius: 28px;
+                    font-family: Arial;
+                    position: absolute;
+                    left: 10px;
+                    top:10px;
+                    color: #ffffff;
+                    font-size: 20px;
+                    padding: 10px 20px 10px 20px;
+                    text-decoration: none;">Back</button>
+            <div class="wrapper">
+                <ul class="steps">
+                    <li class="is-active">Step 1</li>
+                    <li>Step 2</li>
+
+                </ul>
+                <form class="form-wrapper">
+
+                    <fieldset class="section is-active">
+                        <h3 class="headerText">Player One Name </h3>
+                        <input type="text" name="name" id="name" placeholder="Player One">
+                        <span id="n1">Name required</span>
+                        <h3 class="headerText">Player Two Name </h3>
+                        <input type="text" name="name2" id="name2" placeholder="Player Two">
+                        <span id="n2">Name required</span>
+                        <div class="button">Next</div>
+                    </fieldset>
+
+
+                    <fieldset class="section">
+                        <h3>Game Level</h3>
+                        <div class="row cf">
+                            <div class="four col">
+                                <input type="radio" name="r3" id="r1" checked>
+                                <label for="r1">
+                                    <h4>Level One</h4>
+                                </label>
+                            </div>
+                            <div class="four col">
+                                <input type="radio" name="r3" id="r2">
+                                <label for="r2">
+                                    <h4>Level Two</h4>
+                                </label>
+                            </div>
+
+                        </div>
+                        <input class="submit button" type="button" name="start" value="Start Game">
+                    </fieldset>
+
+
+                </form>
+            </div>
+        </div>
+
+
+    </body>
+</html>
